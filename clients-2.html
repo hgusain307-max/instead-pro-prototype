@@ -1,0 +1,781 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Instead Pro Home at 2 clients</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Libre+Baskerville:wght@400;700&display=swap">
+<style>
+body{margin:0;background:#FBFCF7}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cursor:pointer;text-align:left}
+button:focus-visible,input:focus-visible{outline:2px solid #24282C;outline-offset:2px}
+.row:not([aria-pressed="true"]):hover{background:rgba(36,40,44,0.05)}
+.pill:hover{background:rgba(36,40,44,0.06)}
+.card:hover{border-color:rgba(36,40,44,0.4)}
+input::placeholder{color:#5E6368;opacity:1}
+.scroll{overflow-y:auto;scrollbar-width:thin}
+button,.row,.card,.pill{transition:background-color .16s ease,border-color .16s ease,color .16s ease,transform .14s ease,box-shadow .18s ease}
+button:active{transform:scale(.97)}
+.card:hover{transform:translateY(-1px)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes popIn{from{opacity:0;transform:translateY(-6px) scale(.98)}to{opacity:1;transform:none}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(194,239,114,0.7)}50%{box-shadow:0 0 0 5px rgba(194,239,114,0)}}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.fade{animation:fadeUp .38s ease both}
+.pop{animation:popIn .2s ease both}
+.stagger>*{animation:fadeUp .4s ease backwards}
+.stagger>*:nth-child(1){animation-delay:.04s}
+.stagger>*:nth-child(2){animation-delay:.09s}
+.stagger>*:nth-child(3){animation-delay:.14s}
+.stagger>*:nth-child(4){animation-delay:.19s}
+.stagger>*:nth-child(5){animation-delay:.24s}
+.stagger>*:nth-child(6){animation-delay:.29s}
+.stagger>*:nth-child(7){animation-delay:.34s}
+.stagger>*:nth-child(8){animation-delay:.39s}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media (max-width:900px){.chat{order:-1;flex-basis:100%}}
+</style>
+</helmet>
+<div style="position:relative;min-height:max(900px,100vh);box-sizing:border-box;padding:12px 16px 16px;display:flex;flex-direction:column;gap:12px;background:#FBFCF7;color:#24282C;font-family:'Lato',sans-serif;font-size:14px;line-height:1.4">
+
+<!-- trial banner (as in the product) -->
+<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:5px 6px 5px 16px;border-radius:20px;background:#FBF7E4;border:0.5px solid rgba(166,110,0,0.16);font-size:13px">
+  <span><span style="font-weight:700">ghj</span> trial ends in 7 days.</span>
+  <button class="pill" style="height:28px;padding:0 14px;border-radius:14px;background:#24282C;color:#F7F6F0;font-size:12px;font-weight:700">Schedule with the Instead team</button>
+</div>
+
+<!-- ===================== LIBRARY VIEW ===================== -->
+<sc-if value="{{isLibrary}}" hint-placeholder-val="{{ false }}">
+<div style="flex:1;display:flex;flex-wrap:wrap;gap:16px;min-height:0">
+  <div style="flex:0 0 40px;display:flex;flex-direction:column;align-items:center;gap:10px;padding-top:4px">
+    <button aria-label="Back to home" onClick="{{goHome}}" style="width:36px;height:36px;border-radius:10px;background:#C2EF72;font-weight:700;font-size:16px;display:flex;align-items:center;justify-content:center">i</button>
+  </div>
+  <section style="flex:999 1 560px;min-width:0;box-sizing:border-box;display:flex;flex-direction:column;gap:16px;padding:18px 24px 16px;border:0.5px solid rgba(36,40,44,0.18);border-radius:24px;background:#FDFCF9;min-height:812px">
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+      <span style="display:flex;align-items:center;gap:10px;flex:1;min-width:140px">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="8" height="8" x="3" y="3" rx="2"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect width="8" height="8" x="13" y="13" rx="2"/></svg>
+        <span style="font-family:'Libre Baskerville',serif;font-size:18px">Workflows</span>
+      </span>
+      <button class="pill" style="display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 14px;border-radius:16px;border:0.5px solid rgba(36,40,44,0.22);font-size:13px">Upload workflow</button>
+      <button style="display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 14px;border-radius:16px;background:#24282C;color:#F7F6F0;font-size:13px">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg>Build workflow
+      </button>
+      <button aria-label="Close workflows" onClick="{{goHome}}" class="pill" style="width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+      <div style="display:flex;gap:2px;padding:3px;border-radius:18px;background:rgba(36,40,44,0.05)">
+        <sc-for list="{{libTabs}}" as="t" hint-placeholder-count="4">
+          <button onClick="{{t.pick}}" style="height:28px;padding:0 12px;border-radius:14px;font-size:13px;background:{{t.bg}};border:0.5px solid {{t.bd}}">{{t.label}}</button>
+        </sc-for>
+      </div>
+      <span style="flex:1"></span>
+      <label style="display:flex;align-items:center;gap:8px;height:32px;padding:0 12px;border:0.5px solid rgba(36,40,44,0.22);border-radius:16px;background:#fff;color:#5E6368;min-width:200px">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input aria-label="Search workflows" value="{{libQ}}" onInput="{{onLibSearch}}" placeholder="Search" style="flex:1;min-width:0;border:0;outline:0;background:none;font:inherit;font-size:13px;color:#24282C">
+      </label>
+    </div>
+    <div class="scroll" style="flex:1 1 0;min-height:0">
+      <div class="stagger" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px">
+        <sc-for list="{{cards}}" as="w" hint-placeholder-count="8">
+          <div class="card" style="display:flex;flex-direction:column;gap:6px;min-height:150px;padding:14px 16px;border:0.5px solid rgba(36,40,44,0.2);border-radius:16px;background:#fff">
+            <span style="font-size:12px;color:#5E6368">{{w.cat}}</span>
+            <span style="font-family:'Libre Baskerville',serif;font-size:15px;line-height:1.3">{{w.title}}</span>
+            <span style="font-size:12px;color:#5E6368;flex:1">{{w.desc}}</span>
+            <span style="display:flex;align-items:center;justify-content:space-between">
+              <span style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:#5E6368"><span style="width:16px;height:16px;border-radius:50%;background:#C2EF72;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#24282C">i</span>Instead</span>
+              <button onClick="{{w.run}}" style="display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 12px;border-radius:13px;background:#24282C;color:#F7F6F0;font-size:12px">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3"/></svg>Run
+              </button>
+            </span>
+          </div>
+        </sc-for>
+      </div>
+      <sc-if value="{{noCards}}" hint-placeholder-val="{{ false }}"><div style="padding:48px 0;text-align:center;color:#5E6368">{{libEmpty}}</div></sc-if>
+    </div>
+  </section>
+  <aside style="flex:0 1 340px;min-width:260px;min-height:812px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;gap:20px;padding:0 4px 16px">
+    <h2 style="margin:0;text-align:center;font-family:'Libre Baskerville',serif;font-weight:400;font-size:24px;line-height:1.3">How can I support your firm today?</h2>
+    <div style="box-sizing:border-box;padding:12px 14px;border:0.5px solid rgba(36,40,44,0.3);border-radius:24px;background:#fff;color:#5E6368;font-size:14px">Give me a task or question to work on...</div>
+  </aside>
+</div>
+</sc-if>
+
+<!-- ===================== SHELL: home / client / run ===================== -->
+<sc-if value="{{notLibrary}}" hint-placeholder-val="{{ true }}">
+<div style="flex:1;display:flex;flex-wrap:wrap;gap:16px;min-height:0">
+
+<!-- LEFT: sidebar (no client) -->
+<sc-if value="{{notClient}}" hint-placeholder-val="{{ true }}">
+<aside style="flex:0 1 320px;min-width:260px;min-height:812px;box-sizing:border-box;display:flex;flex-direction:column;gap:12px;padding:16px 8px 10px;border:0.5px solid rgba(36,40,44,0.18);border-radius:24px;background:#F7F6F0">
+  <button aria-label="Instead home" onClick="{{goHome}}" style="padding:0 8px;font-size:24px;font-weight:700;letter-spacing:-0.04em">instead</button>
+  <div style="display:flex;gap:8px;align-items:center;padding:0 4px">
+    <button class="pill" style="flex:1;display:flex;align-items:center;gap:10px;height:36px;padding:0 14px;border:0.5px solid rgba(36,40,44,0.22);border-radius:18px;background:#fff;font-size:14px">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="8" height="8" x="3" y="3" rx="2"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect width="8" height="8" x="13" y="13" rx="2"/></svg>Workflows
+    </button>
+    <button aria-label="Library" class="pill" style="width:36px;height:36px;border-radius:50%;border:0.5px solid rgba(36,40,44,0.22);display:flex;align-items:center;justify-content:center">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 6 4 14"/><path d="M12 6v14"/><path d="M8 8v12"/><path d="M4 4v16"/></svg>
+    </button>
+    <button aria-label="New thread" onClick="{{goHome}}" class="pill" style="width:36px;height:36px;border-radius:50%;border:0.5px solid rgba(36,40,44,0.22);display:flex;align-items:center;justify-content:center">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M12 7v6"/><path d="M9 10h6"/></svg>
+    </button>
+  </div>
+  <label style="margin:0 4px;display:flex;align-items:center;gap:8px;height:36px;padding:0 8px 0 14px;border:0.5px solid rgba(36,40,44,0.3);border-radius:18px;background:#fff;color:#5E6368">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+    <input aria-label="Search clients and threads" value="{{qRaw}}" onInput="{{onSearch}}" placeholder="Search clients and threads" style="flex:1;min-width:0;border:0;outline:0;background:none;font:inherit;font-size:13px;color:#24282C">
+    <sc-if value="{{hasQ}}" hint-placeholder-val="{{ false }}">
+      <button aria-label="Clear search" onClick="{{clearSearch}}" class="pill" style="width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#24282C">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </sc-if>
+  </label>
+
+  <sc-if value="{{hasQ}}" hint-placeholder-val="{{ false }}">
+    <div class="scroll" style="flex:1 1 0;min-height:0;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;flex-direction:column;gap:2px">
+        <div style="display:flex;justify-content:space-between;padding:4px 12px 6px;font-size:11px;letter-spacing:0.08em;color:#5E6368"><span>CLIENTS</span><span>{{nc}}</span></div>
+        <sc-for list="{{clientHits}}" as="h" hint-placeholder-count="3">
+          <button class="row" onClick="{{h.pick}}" aria-pressed="false" style="display:flex;align-items:center;gap:10px;width:100%;box-sizing:border-box;padding:8px 12px;border-radius:14px">
+            <span style="flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700">{{h.name}}</span>
+            <span style="flex:none;padding:0 7px;border-radius:9px;background:#ECF4DB;font-size:11px">{{h.form}}</span>
+          </button>
+        </sc-for>
+        <sc-if value="{{noClientHits}}" hint-placeholder-val="{{ false }}"><div style="padding:6px 12px;font-size:13px;color:#5E6368">No clients match.</div></sc-if>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:2px">
+        <div style="display:flex;justify-content:space-between;padding:4px 12px 6px;font-size:11px;letter-spacing:0.08em;color:#5E6368"><span>THREADS</span><span>{{nt}}</span></div>
+        <sc-for list="{{threadHits}}" as="t" hint-placeholder-count="3">
+          <button class="row" onClick="{{t.pick}}" aria-pressed="false" style="display:flex;align-items:center;gap:10px;width:100%;box-sizing:border-box;padding:8px 12px;border-radius:14px">
+            <span style="flex:1;min-width:0;display:flex;flex-direction:column">
+              <span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{t.title}}</span>
+              <span style="font-size:12px;color:#5E6368">{{t.sub}}</span>
+            </span>
+          </button>
+        </sc-for>
+        <sc-if value="{{noThreadHits}}" hint-placeholder-val="{{ false }}"><div style="padding:6px 12px;font-size:13px;color:#5E6368">No threads match.</div></sc-if>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{noQ}}" hint-placeholder-val="{{ true }}">
+    <div style="flex:1 1 0;min-height:0;display:flex;flex-direction:column;gap:10px">
+      <div class="scroll" style="flex:1 1 0;min-height:0;display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;flex-direction:column;gap:2px">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:4px 12px 6px;font-size:11px;letter-spacing:0.08em;color:#5E6368"><span>NEEDS YOU</span><span>{{needsHead}}</span></div>
+          <sc-for list="{{needs}}" as="c" hint-placeholder-count="6">
+            <button class="row" onClick="{{c.pick}}" aria-pressed="false" style="display:flex;gap:10px;align-items:flex-start;width:100%;box-sizing:border-box;padding:8px 12px;border-radius:16px">
+              <span style="width:16px;height:16px;margin-top:2px;flex:none;display:flex;align-items:center;justify-content:center;color:{{c.fg}}">
+                <sc-if value="{{c.isRed}}" hint-placeholder-val="{{ false }}"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg></sc-if>
+                <sc-if value="{{c.isAmber}}" hint-placeholder-val="{{ false }}"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></sc-if>
+                <sc-if value="{{c.isGreen}}" hint-placeholder-val="{{ false }}"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></sc-if>
+                <sc-if value="{{c.isLime}}" hint-placeholder-val="{{ false }}"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg></sc-if>
+              </span>
+              <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:1px">
+                <span style="display:flex;align-items:center;gap:8px">
+                  <span style="font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{c.name}}</span>
+                  <span style="flex:none;padding:0 7px;border-radius:9px;background:#ECF4DB;font-size:11px">{{c.form}}</span>
+                </span>
+                <span style="font-size:12px;color:{{c.reasonColor}}">{{c.reason}}</span>
+              </span>
+              <span style="flex:none;margin-top:1px;font-size:12px;color:{{c.reasonColor}}">{{c.when}}</span>
+            </button>
+          </sc-for>
+          <sc-if value="{{isLarge}}" hint-placeholder-val="{{ false }}">
+            <button class="row" aria-pressed="false" style="display:flex;align-items:center;gap:6px;padding:7px 12px;border-radius:14px;color:#5E6368;font-size:13px">Show 8 more
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+          </sc-if>
+        </div>
+        <sc-if value="{{isLarge}}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:2px">
+            <div style="display:flex;justify-content:space-between;padding:4px 12px 6px;font-size:11px;letter-spacing:0.08em;color:#5E6368"><span>SAVED VIEWS</span><span>ALL 200</span></div>
+            <sc-for list="{{views}}" as="v" hint-placeholder-count="5">
+              <button class="row" aria-pressed="false" style="display:flex;align-items:center;gap:10px;width:100%;box-sizing:border-box;padding:8px 12px;border-radius:14px">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#5E6368" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none"><path d="m19 21-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                <span style="flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{v.name}}</span>
+                <span style="flex:none;font-size:12px;color:#5E6368">{{v.count}}</span>
+              </button>
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{notLarge}}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;flex-direction:column;gap:2px">
+            <div style="display:flex;justify-content:space-between;padding:4px 12px 6px;font-size:11px;letter-spacing:0.08em;color:#5E6368"><span>EVERYONE ELSE · NEXT DEADLINE</span><span>{{othersTotal}}</span></div>
+            <sc-for list="{{others}}" as="o" hint-placeholder-count="4">
+              <button class="row" onClick="{{o.pick}}" aria-pressed="false" style="display:flex;gap:10px;align-items:center;width:100%;box-sizing:border-box;padding:7px 12px;border-radius:14px">
+                <span style="flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{o.name}}</span>
+                <span style="flex:none;font-size:12px;color:#5E6368">{{o.when}}</span>
+                <span style="flex:none;padding:0 7px;border-radius:9px;background:#ECF4DB;font-size:11px">{{o.form}}</span>
+              </button>
+            </sc-for>
+            <sc-if value="{{showAllOthers}}" hint-placeholder-val="{{ true }}">
+            <button class="row" aria-pressed="false" style="display:flex;align-items:center;gap:6px;padding:7px 12px;border-radius:14px;color:#5E6368;font-size:13px">Show all 42
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+            </sc-if>
+          </div>
+        </sc-if>
+      </div>
+      <div style="flex:0 0 auto;display:flex;flex-direction:column;gap:2px;padding-top:6px;border-top:0.5px solid rgba(36,40,44,0.14)">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:4px 12px 6px;font-size:11px;letter-spacing:0.08em;color:#5E6368"><span>THREADS</span><span>{{threadsCount}}</span></div>
+        <sc-for list="{{threadRows}}" as="t" hint-placeholder-count="5">
+          <button class="row" onClick="{{t.pick}}" aria-pressed="false" style="display:flex;align-items:center;gap:8px;padding:6px 12px;border-radius:14px;font-size:13px">
+            <span style="flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{t.title}}</span>
+            <sc-if value="{{t.live}}" hint-placeholder-val="{{ false }}"><span style="flex:none;display:inline-flex;align-items:center;gap:5px;font-size:11px;color:#5E6368"><span style="width:6px;height:6px;border-radius:50%;background:#CAEE82;border:0.5px solid rgba(36,40,44,0.4);animation:pulse 2s ease infinite"></span>Live</span></sc-if>
+            <sc-if value="{{t.notLive}}" hint-placeholder-val="{{ true }}"><span style="flex:none;font-size:12px;color:#5E6368">{{t.time}}</span></sc-if>
+          </button>
+        </sc-for>
+        <button class="row" aria-pressed="false" style="display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:14px;color:#5E6368;font-size:13px">All {{threadTotal}} threads
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+  </sc-if>
+
+  <div style="flex:0 0 auto;display:flex;flex-direction:column;gap:6px;padding:10px 14px;border-radius:20px;background:#FBFCF7;border:0.5px solid rgba(36,40,44,0.14);margin:0 0 4px">
+    <span style="font-family:'Libre Baskerville',serif;font-size:15px">ghj</span>
+    <span style="display:flex;align-items:center;justify-content:space-between">
+      <span style="width:24px;height:24px;border-radius:50%;background:rgba(36,40,44,0.08);display:flex;align-items:center;justify-content:center;font-size:11px;font-family:'Libre Baskerville',serif">HS</span>
+      <span style="display:flex;gap:12px;color:#5E6368">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" x2="19" y1="8" y2="14"/><line x1="22" x2="16" y1="11" y2="11"/></svg>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="21" x2="14" y1="4" y2="4"/><line x1="10" x2="3" y1="4" y2="4"/><line x1="21" x2="12" y1="12" y2="12"/><line x1="8" x2="3" y1="12" y2="12"/><line x1="21" x2="16" y1="20" y2="20"/><line x1="12" x2="3" y1="20" y2="20"/></svg>
+      </span>
+    </span>
+  </div>
+</aside>
+</sc-if>
+
+<!-- LEFT: client panel (when a client is in the chat) -->
+<sc-if value="{{isClient}}" hint-placeholder-val="{{ false }}">
+<aside class="fade" style="flex:0 1 320px;min-width:260px;min-height:812px;box-sizing:border-box;display:flex;flex-direction:column;gap:12px;padding:16px 14px 14px;border:0.5px solid rgba(36,40,44,0.18);border-radius:24px;background:#F7F6F0">
+  <div style="display:flex;align-items:flex-start;gap:10px;padding:0 4px">
+    <span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:2px">
+      <span style="font-family:'Libre Baskerville',serif;font-size:19px;line-height:1.25">{{panelName}}</span>
+      <span style="display:flex;align-items:center;gap:8px;font-size:12px;color:#5E6368"><span style="padding:0 7px;border-radius:9px;background:#ECF4DB;color:#24282C">{{panelForm}}</span>{{panelMore}}</span>
+    </span>
+    <button aria-label="Remove client from chat" onClick="{{removePrimary}}" class="pill" style="width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </button>
+  </div>
+  <div style="display:flex;align-items:center;gap:6px">
+    <button class="pill" style="flex:1;display:flex;align-items:center;gap:8px;height:34px;padding:0 14px;border-radius:17px;border:0.5px solid rgba(36,40,44,0.22);background:#fff;font-size:13px">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M12 7v6"/><path d="M9 10h6"/></svg>New client thread
+    </button>
+    <button aria-label="More" class="pill" style="width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#5E6368"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg></button>
+    <button aria-label="History" class="pill" style="width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#5E6368"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg></button>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:2px">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:4px 8px 6px;font-size:11px;letter-spacing:0.08em;color:#5E6368"><span>TAX DOCS</span>
+      <span style="display:flex;gap:10px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span>
+    </div>
+    <sc-for list="{{folders}}" as="f" hint-placeholder-count="2">
+      <div style="display:flex;flex-direction:column">
+        <button class="row" onClick="{{f.toggle}}" aria-pressed="false" style="display:flex;align-items:center;gap:10px;padding:7px 8px;border-radius:12px">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>
+          <span style="flex:1">{{f.name}}</span><span style="font-size:12px;color:#5E6368">{{f.count}}</span>
+        </button>
+        <sc-if value="{{f.open}}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:2px;padding-left:26px">
+            <sc-for list="{{f.files}}" as="d" hint-placeholder-count="2">
+              <span style="display:flex;align-items:center;gap:8px;padding:5px 8px;font-size:13px;color:#5E6368"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>{{d.name}}</span>
+            </sc-for>
+            <button class="pill" style="display:flex;align-items:center;gap:8px;height:30px;padding:0 12px;border-radius:15px;border:0.5px dashed rgba(36,40,44,0.35);font-size:13px;color:#5E6368"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg>Upload files</button>
+          </div>
+        </sc-if>
+      </div>
+    </sc-for>
+  </div>
+  <div style="flex:1 1 0;min-height:0;display:flex;flex-direction:column;gap:2px;padding-top:8px;border-top:0.5px solid rgba(36,40,44,0.14)">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:4px 8px 6px;font-size:11px;letter-spacing:0.08em;color:#5E6368"><span>CLIENT THREADS</span><span>{{threadsCount}}</span></div>
+    <div class="scroll" style="flex:1 1 0;min-height:0">
+      <sc-for list="{{threadRows}}" as="t" hint-placeholder-count="4">
+        <button class="row" onClick="{{t.pick}}" aria-pressed="false" style="display:flex;align-items:center;gap:8px;width:100%;box-sizing:border-box;padding:7px 8px;border-radius:12px;font-size:13px">
+          <span style="flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{t.title}}</span>
+          <span style="flex:none;font-size:12px;color:#5E6368">{{t.time}}</span>
+        </button>
+      </sc-for>
+      <sc-if value="{{noThreadRows}}" hint-placeholder-val="{{ false }}"><div style="padding:18px 8px;text-align:center;font-size:13px;color:#5E6368">Start your first thread</div></sc-if>
+    </div>
+  </div>
+</aside>
+</sc-if>
+
+<!-- CENTER -->
+<main class="chat" style="flex:999 1 560px;min-width:0;min-height:812px;box-sizing:border-box;display:flex;flex-direction:column;padding:0 8px 8px">
+  <sc-if value="{{notRun}}" hint-placeholder-val="{{ true }}">
+    <div style="display:flex;justify-content:flex-end;padding:0 2px 4px">
+      <button aria-label="Workflows" aria-expanded="{{wfExpanded}}" onClick="{{toggleWf}}" class="pill" style="display:inline-flex;align-items:center;gap:8px;height:30px;padding:0 10px 0 12px;border-radius:15px;border:0.5px solid rgba(36,40,44,0.3);background:#fff;font-size:12px">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="8" height="8" x="3" y="3" rx="2"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect width="8" height="8" x="13" y="13" rx="2"/></svg>
+        Workflows
+        <span style="padding:0 7px;border-radius:9px;background:rgba(36,40,44,0.06);font-size:12px">{{wfCount}}</span>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+    </div>
+  </sc-if>
+  <div class="scroll" style="flex:1 1 0;min-height:0;display:flex;flex-direction:column;justify-content:{{topJustify}};gap:20px;padding:12px 0 20px">
+
+    <sc-if value="{{isRun}}" hint-placeholder-val="{{ false }}">
+      <div style="width:100%;max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:22px">
+        <h1 style="margin:0;font-family:'Libre Baskerville',serif;font-weight:400;font-size:28px;line-height:1.3">Run the '{{wfTitle}}' workflow</h1>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <span style="display:flex;align-items:center;gap:6px;font-weight:700;font-size:13px">Reasoning<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg></span>
+          <div class="stagger" style="display:flex;flex-direction:column;gap:14px;padding-left:2px">
+            <sc-for list="{{steps}}" as="s" hint-placeholder-count="4">
+              <div style="display:flex;gap:12px">
+                <span style="flex:none;width:16px;height:16px;margin-top:3px;display:flex;align-items:center;justify-content:center">
+                  <sc-if value="{{s.isDone}}" hint-placeholder-val="{{ false }}"><span style="width:16px;height:16px;border-radius:50%;background:#24282C;color:#fff;display:flex;align-items:center;justify-content:center"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></sc-if>
+                  <sc-if value="{{s.isActive}}" hint-placeholder-val="{{ false }}"><span style="width:14px;height:14px;border-radius:50%;background:#C2EF72;box-shadow:0 0 0 4px rgba(194,239,114,0.35);animation:pulse 1.8s ease infinite"></span></sc-if>
+                  <sc-if value="{{s.isPending}}" hint-placeholder-val="{{ false }}"><span style="width:14px;height:14px;border-radius:50%;border:0.5px solid rgba(36,40,44,0.4)"></span></sc-if>
+                </span>
+                <span style="display:flex;flex-direction:column;gap:4px">
+                  <span style="font-size:16px;color:{{s.color}}">{{s.title}}</span>
+                  <sc-if value="{{s.hasSub}}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;color:#8A8F94">{{s.sub}}</span></sc-if>
+                </span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{notRun}}" hint-placeholder-val="{{ true }}">
+      <div class="fade" style="display:flex;flex-direction:column;align-items:center;gap:20px">
+        <div style="width:100%;max-width:720px;display:flex;flex-direction:column;gap:12px;text-align:center;align-items:center">
+          <h1 style="margin:0;font-family:'Libre Baskerville',serif;font-weight:400;font-size:34px;line-height:1.25;letter-spacing:-0.01em">{{heading}}</h1>
+          <p style="margin:0;font-size:15px;color:#5E6368;max-width:560px">{{sub}}</p>
+        </div>
+        <sc-if value="{{notClient}}" hint-placeholder-val="{{ true }}">
+          <div class="stagger" style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center">
+            <sc-for list="{{digest}}" as="d" hint-placeholder-count="3">
+              <span style="display:inline-flex;align-items:center;gap:8px;height:28px;padding:0 12px 0 9px;border-radius:14px;border:0.5px solid {{d.border}};background:{{d.bg}};color:{{d.fg}};font-size:12px">
+                <span style="display:flex;color:{{d.ic}}">
+                  <sc-if value="{{d.isOver}}" hint-placeholder-val="{{ false }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg></sc-if>
+                  <sc-if value="{{d.isSoon}}" hint-placeholder-val="{{ false }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></sc-if>
+                  <sc-if value="{{d.isAppr}}" hint-placeholder-val="{{ false }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 11 2 2 4-4"/><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></sc-if>
+                </span>
+                <span><span style="font-weight:{{d.w}};color:{{d.cnt}}">{{d.n}}</span> {{d.label}}</span>
+              </span>
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{isClient}}" hint-placeholder-val="{{ false }}">
+          <div class="stagger" style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center">
+            <sc-for list="{{stats}}" as="d" hint-placeholder-count="3">
+              <span style="display:inline-flex;align-items:center;gap:8px;height:28px;padding:0 12px 0 9px;border-radius:14px;border:0.5px solid {{d.border}};background:{{d.bg}};color:{{d.fg}};font-size:12px">
+                <span style="display:flex;color:{{d.ic}}">
+                  <sc-if value="{{d.isOver}}" hint-placeholder-val="{{ false }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg></sc-if>
+                  <sc-if value="{{d.isClock}}" hint-placeholder-val="{{ false }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></sc-if>
+                  <sc-if value="{{d.isDoc}}" hint-placeholder-val="{{ false }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg></sc-if>
+                  <sc-if value="{{d.isWf}}" hint-placeholder-val="{{ false }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="8" height="8" x="3" y="3" rx="2"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect width="8" height="8" x="13" y="13" rx="2"/></svg></sc-if>
+                </span>
+                <span><span style="font-weight:{{d.w}};color:{{d.cnt}}">{{d.n}}</span> {{d.label}}</span>
+              </span>
+            </sc-for>
+          </div>
+        </sc-if>
+      </div>
+    </sc-if>
+  </div>
+
+  <!-- composer: tray with approval banner, progress, scope chips, input -->
+  <div style="position:relative;width:100%;max-width:720px;align-self:center;box-sizing:border-box;display:flex;flex-direction:column;gap:8px;padding:10px 10px 10px;border-radius:30px;background:#F7F6F0">
+    <sc-if value="{{showBanner}}" hint-placeholder-val="{{ false }}">
+      <div class="pop" style="display:flex;align-items:center;gap:10px;padding:2px 6px 2px 8px;font-size:13px">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#5E6368" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none"><path d="M18 6 7 17l-5-5"/><path d="m22 10-7.5 7.5L13 16"/></svg>
+        <span style="flex:1;min-width:0">Allow all actions for {{wfTitle}} without approving each one?</span>
+        <button onClick="{{allowAll}}" style="flex:none;height:28px;padding:0 14px;border-radius:14px;background:#24282C;color:#F7F6F0;font-size:12px">Allow all</button>
+        <button aria-label="Dismiss" onClick="{{allowAllNo}}" class="pill" style="width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#5E6368"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+      </div>
+    </sc-if>
+    <sc-if value="{{isRun}}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;align-items:center;gap:10px;padding:2px 10px 2px 10px;font-size:13px;color:#5E6368">
+        <span style="width:14px;height:14px;border-radius:50%;border:1.5px solid rgba(36,40,44,0.25);border-top-color:#24282C;flex:none;animation:spin .9s linear infinite"></span>
+        <span style="flex:1;color:#24282C">Welcome and framing</span><span style="font-size:12px">0 of 11 done</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+    </sc-if>
+    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:0 4px">
+      <sc-for list="{{scopeChips}}" as="k" hint-placeholder-count="1">
+        <span class="pop" style="display:inline-flex;align-items:center;gap:7px;height:30px;padding:0 4px 0 6px;border-radius:15px;border:0.5px solid rgba(36,40,44,0.22);background:#fff;font-size:12px">
+          <sc-if value="{{k.isWf}}" hint-placeholder-val="{{ false }}"><span style="width:20px;height:20px;border-radius:50%;background:#E0F4AF;display:flex;align-items:center;justify-content:center"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="8" height="8" x="3" y="3" rx="2"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect width="8" height="8" x="13" y="13" rx="2"/></svg></span></sc-if>
+          <sc-if value="{{k.isClient}}" hint-placeholder-val="{{ false }}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"/></svg></sc-if>
+          {{k.label}}
+          <sc-if value="{{k.removable}}" hint-placeholder-val="{{ false }}">
+            <button aria-label="Remove from chat" onClick="{{k.remove}}" class="pill" style="width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            </button>
+          </sc-if>
+          <sc-if value="{{k.notRemovable}}" hint-placeholder-val="{{ true }}"><span style="width:6px"></span></sc-if>
+        </span>
+      </sc-for>
+    </div>
+    <div style="box-sizing:border-box;display:flex;flex-direction:column;gap:6px;padding:12px 12px 10px 16px;border:0.5px solid rgba(36,40,44,0.3);border-radius:26px;background:#fff">
+      <input aria-label="Message" autofocus="autofocus" placeholder="{{placeholder}}" style="border:0;outline:0;background:none;font:inherit;font-size:15px;padding:2px 0 6px;color:#24282C">
+      <div style="display:flex;align-items:center;gap:8px">
+        <button aria-label="Attach files" class="pill" style="width:32px;height:32px;border-radius:50%;background:rgba(36,40,44,0.06);display:flex;align-items:center;justify-content:center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg></button>
+        <button aria-label="Options" class="pill" style="width:32px;height:32px;border-radius:50%;background:rgba(36,40,44,0.06);display:flex;align-items:center;justify-content:center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="21" x2="14" y1="4" y2="4"/><line x1="10" x2="3" y1="4" y2="4"/><line x1="21" x2="12" y1="12" y2="12"/><line x1="8" x2="3" y1="12" y2="12"/><line x1="21" x2="16" y1="20" y2="20"/><line x1="12" x2="3" y1="20" y2="20"/></svg></button>
+        <button aria-label="Run a workflow" onClick="{{openLibrary}}" class="pill" style="width:32px;height:32px;border-radius:50%;background:rgba(36,40,44,0.06);display:flex;align-items:center;justify-content:center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="8" height="8" x="3" y="3" rx="2"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect width="8" height="8" x="13" y="13" rx="2"/></svg></button>
+        <span style="flex:1"></span>
+        <button aria-label="Voice input" class="pill" style="width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg></button>
+        <sc-if value="{{notRun}}" hint-placeholder-val="{{ true }}"><button aria-label="Send" style="width:32px;height:32px;border-radius:50%;background:#E0F4AF;color:#24282C;display:flex;align-items:center;justify-content:center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg></button></sc-if>
+        <sc-if value="{{isRun}}" hint-placeholder-val="{{ false }}"><button aria-label="Stop" onClick="{{goHome}}" style="width:32px;height:32px;border-radius:50%;background:#24282C;color:#fff;display:flex;align-items:center;justify-content:center"><span style="width:10px;height:10px;background:#fff;border-radius:2px"></span></button></sc-if>
+      </div>
+    </div>
+  </div>
+
+  <sc-if value="{{notRun}}" hint-placeholder-val="{{ true }}">
+    <div style="flex:0.55 1 0;min-height:0;display:flex;flex-wrap:wrap;align-content:flex-start;justify-content:center;gap:8px;padding-top:16px">
+      <sc-for list="{{suggestions}}" as="s" hint-placeholder-count="4">
+        <button onClick="{{s.run}}" class="pill" style="display:inline-flex;align-items:center;gap:8px;height:28px;padding:0 12px;border-radius:14px;border:0.5px solid rgba(36,40,44,0.22);font-size:12px;color:#5E6368">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="8" height="8" x="3" y="3" rx="2"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect width="8" height="8" x="13" y="13" rx="2"/></svg>
+          {{s.text}}
+        </button>
+      </sc-for>
+    </div>
+  </sc-if>
+</main>
+
+<!-- RIGHT: running workflows (home and client views) -->
+<sc-if value="{{wfOpen}}" hint-placeholder-val="{{ false }}">
+<aside class="pop" style="position:absolute;right:20px;top:112px;width:300px;max-height:640px;overflow-y:auto;z-index:6;box-sizing:border-box;display:flex;flex-direction:column;gap:12px;padding:14px;border:0.5px solid rgba(36,40,44,0.25);border-radius:22px;background:#FBFCF7;box-shadow:0 12px 36px rgba(36,40,44,0.14)">
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:0 4px">
+    <span style="display:flex;align-items:center;gap:10px">
+      <span style="font-family:'Libre Baskerville',serif;font-size:17px">Workflows</span>
+      <span style="padding:0 7px;border-radius:9px;background:rgba(36,40,44,0.06);font-size:12px">{{wfCount}}</span>
+    </span>
+    <button aria-label="Open workflow library" onClick="{{openLibrary}}" class="pill" style="width:30px;height:30px;border-radius:50%;border:0.5px solid rgba(36,40,44,0.22);display:flex;align-items:center;justify-content:center">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+    </button>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:8px">
+    <div style="display:flex;justify-content:space-between;padding:2px 6px;font-size:11px;letter-spacing:0.08em;color:#5E6368"><span>{{groupATitle}}</span><span>{{groupAMore}}</span></div>
+    <sc-for list="{{groupA}}" as="w" hint-placeholder-count="2">
+      <div style="display:flex;flex-direction:column;gap:5px;padding:9px 12px;border:0.5px solid rgba(36,40,44,0.18);border-radius:14px;background:#fff">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px">
+          <span style="font-weight:700;font-size:13px">{{w.title}}</span>
+          <span style="flex:none;padding:0 8px;border-radius:10px;font-size:11px;background:{{w.pillBg}};border:0.5px solid {{w.pillBd}}">{{w.state}}</span>
+        </div>
+        <span style="font-size:12px;color:#5E6368">{{w.meta}}</span>
+        <div style="height:2px;border-radius:1px;background:rgba(36,40,44,0.1);overflow:hidden"><div style="height:2px;background:#24282C;width:{{w.pct}}%;transform-origin:left;animation:grow .8s ease both"></div></div>
+        <sc-if value="{{w.approve}}" hint-placeholder-val="{{ false }}"><button onClick="{{w.go}}" style="align-self:flex-start;margin-top:2px;height:24px;padding:0 10px;border-radius:12px;border:0.5px solid rgba(36,40,44,0.5);background:#fff;color:#24282C;font-size:12px" class="pill">Review and approve</button></sc-if>
+        <sc-if value="{{w.suggest}}" hint-placeholder-val="{{ false }}"><button onClick="{{w.go}}" style="align-self:flex-start;margin-top:2px;height:24px;padding:0 10px;border-radius:12px;border:0.5px solid rgba(36,40,44,0.5);background:#fff;color:#24282C;font-size:12px" class="pill">Run</button></sc-if>
+      </div>
+    </sc-for>
+    <sc-if value="{{showMoreA}}" hint-placeholder-val="{{ false }}">
+      <button class="row" aria-pressed="false" style="display:flex;align-items:center;gap:6px;padding:6px 8px;border-radius:14px;color:#5E6368;font-size:13px">Show 2 more
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+    </sc-if>
+  </div>
+  <sc-if value="{{showGroupB}}" hint-placeholder-val="{{ true }}">
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="padding:2px 6px;font-size:11px;letter-spacing:0.08em;color:#5E6368">{{groupBTitle}}</div>
+      <sc-for list="{{groupB}}" as="w" hint-placeholder-count="2">
+        <div style="display:flex;flex-direction:column;gap:5px;padding:9px 12px;border:0.5px solid rgba(36,40,44,0.18);border-radius:14px;background:#fff">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px">
+            <span style="font-weight:700;font-size:13px">{{w.title}}</span>
+            <span style="flex:none;padding:0 8px;border-radius:10px;font-size:11px;background:{{w.pillBg}};border:0.5px solid {{w.pillBd}}">{{w.state}}</span>
+          </div>
+          <span style="font-size:12px;color:#5E6368">{{w.meta}}</span>
+          <div style="height:2px;border-radius:1px;background:rgba(36,40,44,0.1);overflow:hidden"><div style="height:2px;background:#24282C;width:{{w.pct}}%;transform-origin:left;animation:grow .8s ease both"></div></div>
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+  <sc-if value="{{showInsideRow}}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="padding:2px 6px;font-size:11px;letter-spacing:0.08em;color:#5E6368">INSIDE A CLIENT</div>
+      <button class="row" aria-pressed="false" style="display:flex;align-items:center;gap:10px;padding:12px 14px;border:0.5px solid rgba(36,40,44,0.2);border-radius:18px;background:#fff">
+        <span style="flex:1;display:flex;flex-direction:column;gap:2px"><span style="font-weight:700;font-size:13px">4 clients with active workflows</span><span style="font-size:12px;color:#5E6368">Filbert, Okafor, Lindqvist, Patel</span></span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+    </div>
+  </sc-if>
+</aside>
+</sc-if>
+
+</div>
+</sc-if>
+
+</div>
+</x-dc>
+<nav style="position:fixed;left:50%;bottom:10px;transform:translateX(-50%);z-index:50;display:flex;gap:4px;padding:3px;border:0.5px solid rgba(36,40,44,0.25);border-radius:16px;background:rgba(251,252,247,0.92);font:12px Lato,sans-serif"><a href="index.html" style="padding:4px 12px;border-radius:12px;color:#24282C;text-decoration:none">48 clients</a><a href="clients-2.html" style="padding:4px 12px;border-radius:12px;color:#24282C;text-decoration:none">2 clients</a><a href="clients-200.html" style="padding:4px 12px;border-radius:12px;color:#24282C;text-decoration:none">200 clients</a></nav>
+<script type="text/x-dc" data-dc-script data-props='{"startScope":{"editor":"enum","options":["all","client"],"default":"all","section":"Prototype"},"startView":{"editor":"enum","options":["home","library","run"],"default":"home","section":"Prototype"},"book":{"editor":"enum","options":["small","large","tiny"],"default":"tiny","section":"Prototype"},"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const st = this.state || {};
+    const book = this.props.book || 'tiny';
+    const large = book === 'large';
+    const tiny = book === 'tiny';
+    const view = st.view || this.props.startView || 'home';
+    const isLibrary = view === 'library';
+    const isRun = view === 'run';
+    const qRaw = st.q || '';
+    const q = qRaw.trim().toLowerCase();
+    const hasQ = q.length > 0;
+    const sels = st.sels || (this.props.startScope === 'client' ? [tiny ? 0 : 2] : []);
+    const isClient = sels.length > 0;
+    const wfTitle = st.wf || '1. Getting Started: Your First Run';
+
+    const RED = '#C4503A', AMBER = '#D99A1F', GREEN = '#7FB02F', LIME = '#C2EF72';
+    const T = {};
+    T[RED] = { tint: '#FBE5DF', fg: '#B4432F', fgv: '#8A2A19' };
+    T[AMBER] = { tint: '#FCF0D2', fg: '#A66E00', fgv: '#6B4600' };
+    T[GREEN] = { tint: '#E6F2D0', fg: '#3E5F0E', fgv: '#2F4A0B' };
+    T[LIME] = { tint: 'rgba(194,239,114,0.5)', fg: '#3E5F0E', fgv: '#2F4A0B' };
+
+    const OCT = 'Oct 15 · 3 days left';
+    const needsData = [
+      { name: 'Reyes, Daniel & Ana', first: 'Daniel and Ana Reyes', form: '1040', reason: 'Q3 estimate overdue', when: '4d late', tone: RED, docs: '11 of 11 received', due: 'Overdue by 4 days', open: 1 },
+      { name: 'Okafor Dental LLC', first: 'Okafor Dental LLC', form: '1065', reason: 'Extension needs your approval', when: 'Today', tone: AMBER, docs: '14 of 14 received', due: OCT, open: 1 },
+      { name: 'Filbert, Martha', first: 'Martha Filbert', form: '1040', reason: 'Missing 2 W-2s', when: '3d', tone: AMBER, docs: '7 of 9 received', due: OCT, open: 2 },
+      { name: 'Brightwater Holdings', first: 'Brightwater Holdings', form: '1120S', reason: 'Client sent 6 documents', when: 'New', tone: GREEN, docs: '18 of 22 received', due: OCT, open: 1 },
+      { name: 'Lindqvist Family Trust', first: 'Lindqvist Family Trust', form: '1041', reason: 'Draft ready for your review', when: '2d', tone: AMBER, docs: '9 of 9 received', due: OCT, open: 2 },
+      large
+        ? { name: 'Castellano Bros LLC', first: 'Castellano Bros LLC', form: '1065', reason: 'Payment failed on retainer', when: '2d late', tone: RED, docs: '10 of 10 received', due: 'Overdue by 2 days', open: 1 }
+        : { name: 'Patel Consulting', first: 'Patel Consulting', form: '1120S', reason: 'Strategy analysis is ready', when: 'Ready', tone: LIME, docs: '12 of 12 received', due: 'Mar 15 · on track', open: 1 }
+    ];
+    if (large) { needsData.splice(1, 0, needsData.pop()); }
+    const ok = (name, form, first) => ({ name, first, form, reason: 'Nothing needs you right now', when: '', tone: GREEN, docs: 'All received', due: 'Mar 15 · on track', open: 0 });
+    const othersData = [
+      ok('Hartwell Foundation', '990', 'Hartwell Foundation'), ok('Northside Bakery', '1120S', 'Northside Bakery'),
+      ok('Alvarez, Rosa', '1040', 'Rosa Alvarez'), ok('Singh, Hemant', '1040', 'Hemant Singh'),
+      ok('Bellamy Architects', '1065', 'Bellamy Architects'), ok('Chen, Wei & Li', '1040', 'Wei and Li Chen'),
+      ok('Dunmore Farms', '1120S', 'Dunmore Farms'), ok('Eastgate Dental', '1120S', 'Eastgate Dental'),
+      ok('Fairbanks Trust', '1041', 'Fairbanks Trust'), ok('Gallagher, Tom', '1040', 'Tom Gallagher'),
+      ok('Harlow Logistics', '1120', 'Harlow Logistics'), ok('Ito, Keiko', '1040', 'Keiko Ito')
+    ];
+    const dates = ['Mar 15', 'Mar 15', 'Apr 15', 'Apr 15', 'Mar 15', 'Apr 15', 'Mar 15', 'Mar 15', 'Apr 15', 'Apr 15', 'Mar 15', 'Apr 15'];
+    othersData.forEach((c, j) => { c.when = dates[j]; });
+    const needsUse = tiny ? [needsData[2]] : needsData;
+    const othersUse = tiny ? [othersData[3]] : othersData;
+    const all = needsUse.concat(othersUse);
+    const NN = needsUse.length;
+    const pickClient = (i) => () => this.setState({ view: 'home', sels: [i], q: '', menu: false, wfOpen: false });
+    const goHome = () => this.setState({ view: 'home', sels: [], q: '', menu: false, wfOpen: false });
+    const runWf = (title) => () => this.setState({ view: 'run', wf: title, allowed: false, menu: false, wfOpen: false });
+    const wfOpen = !!st.wfOpen;
+
+    // threads (generated to test the rail against 60-100)
+    const topics = large
+      ? ['W-2 follow-up', 'Extension question', 'Estimate review', 'Document request', 'Return review', 'Engagement letter', 'Fee question', 'Notice response']
+      : ['W-2 follow-up', 'Extension question', 'Estimate review', 'Document request', 'Return review'];
+    const times = ['12m', '2h', '5h', 'Yesterday', 'Mon', 'Last week'];
+    const shortOf = (c) => c.name.split(/[ ,]/)[0];
+    const globals = [
+      { title: 'Q3 estimate reminders', time: '', live: true, ci: -1, rank: 0, who: 'All clients' },
+      { title: 'Extension prep, Oct 15', time: '', live: true, ci: -1, rank: 0, who: 'All clients' },
+      { title: 'Who is missing documents?', time: 'Yesterday', live: false, ci: -1, rank: 3, who: 'All clients' },
+      { title: 'Weekly digest', time: 'Mon', live: false, ci: -1, rank: 4, who: 'All clients' }
+    ];
+    const threadsAll = tiny ? globals.slice(2) : globals;
+    all.slice(0, 12).forEach((c, ci) => topics.forEach((tp, k) => {
+      const r = (ci + k) % times.length;
+      threadsAll.push({ title: shortOf(c) + ': ' + tp, time: times[r], live: false, ci, rank: r, who: c.name });
+    }));
+    threadsAll.sort((a, b) => a.rank - b.rank);
+    const tRow = (t) => ({ title: t.title, time: t.time, live: t.live, notLive: !t.live, sub: t.who,
+      pick: () => this.setState({ view: 'home', sels: t.ci >= 0 ? [t.ci] : [], q: '', menu: false }) });
+    const threadTotal = threadsAll.length;
+
+    const needs = needsUse.map((c, i) => ({
+      name: c.name, form: c.form, reason: c.reason, when: c.when,
+      fg: c.tone === RED ? '#A8503A' : c.tone === AMBER ? '#9A7420' : c.tone === LIME ? '#3C9A4E' : '#5E6368',
+      isRed: c.tone === RED, isAmber: c.tone === AMBER, isGreen: c.tone === GREEN, isLime: c.tone === LIME,
+      reasonColor: c.tone === RED ? '#B4432F' : '#5E6368',
+      pick: pickClient(i)
+    }));
+    const others = othersUse.map((c, j) => ({ name: c.name, form: c.form, when: c.when, pick: pickClient(NN + j) }));
+    const views = [
+      { name: 'Extensions due Oct 15', count: 31 }, { name: 'Missing documents', count: 12 },
+      { name: 'Waiting on client reply', count: 18 }, { name: 'S corps', count: 47 }, { name: 'Pinned', count: 8 }
+    ];
+
+    const cur = all[sels[0]] || all[0];
+    const multi = sels.length > 1;
+    let threadRows, threadsCount;
+    if (isClient) {
+      const mine = threadsAll.filter((t) => sels.indexOf(t.ci) >= 0);
+      threadRows = mine.slice(0, 12).map(tRow);
+      threadsCount = mine.length;
+    } else {
+      const live = threadsAll.filter((t) => t.live);
+      const recent = threadsAll.filter((t) => !t.live).slice(0, 3);
+      threadRows = live.concat(recent).map(tRow);
+      threadsCount = threadTotal;
+    }
+
+    // client panel
+    const f26 = !!st.f26, f25 = !!st.f25;
+    const folders = [
+      { name: '2026', count: '0 files', open: f26, files: [], toggle: () => this.setState({ f26: !f26 }) },
+      { name: '2025', count: '3 files', open: f25, files: [{ name: 'W-2 (primary employer).pdf' }, { name: '1099-INT (Chase).pdf' }, { name: 'Prior year return.pdf' }], toggle: () => this.setState({ f25: !f25 }) }
+    ];
+    const panelName = cur.name.indexOf(',') >= 0 ? cur.first : cur.name;
+    const panelForm = cur.form;
+    const panelMore = multi ? '+ ' + (sels.length - 1) + ' more in this chat' : '';
+    const removePrimary = () => this.setState({ sels: sels.slice(1), menu: false });
+
+    // search
+    const clientAll = hasQ ? all.map((c, i) => ({ c, i })).filter((x) => (x.c.name + ' ' + x.c.form).toLowerCase().indexOf(q) >= 0) : [];
+    const threadAll = hasQ ? threadsAll.filter((t) => (t.title + ' ' + t.who).toLowerCase().indexOf(q) >= 0) : [];
+    const clientHits = clientAll.slice(0, 6).map((x) => ({ name: x.c.name, form: x.c.form, pick: pickClient(x.i) }));
+    const threadHits = threadAll.slice(0, 6).map(tRow);
+
+    // center content
+    const KT = {
+      over: { bg: '#F4DDD6', border: 'rgba(160,74,52,0.28)', fg: '#7A3A2A', ic: '#A8503A', cnt: '#7A3A2A', w: 700 },
+      soon: { bg: '#F6EBC8', border: 'rgba(150,110,20,0.28)', fg: '#6B5214', ic: '#9A7420', cnt: '#6B5214', w: 700 },
+      appr: { bg: '#DCE8F0', border: 'rgba(60,100,130,0.28)', fg: '#2F4A5E', ic: '#4C7490', cnt: '#2F4A5E', w: 700 }
+    };
+    const chip = (k, n, label) => Object.assign({ n, label, isOver: k === 'over', isSoon: k === 'soon', isAppr: k === 'appr' }, KT[k]);
+    const digest = large
+      ? [chip('over', 2, 'overdue'), chip('soon', 31, 'due in 3 days'), chip('appr', 5, 'need your approval')]
+      : tiny
+        ? [chip('soon', 1, 'due in 3 days'), chip('appr', 1, 'needs your approval')]
+        : [chip('over', 1, 'overdue'), chip('soon', 4, 'due in 3 days'), chip('appr', 2, 'need your approval')];
+    const picked = sels.map((i) => all[i]);
+    const worst = picked.filter((c) => c.tone === RED)[0] || picked.filter((c) => c.tone === AMBER)[0] || cur;
+    const KN = { bg: 'transparent', border: 'rgba(36,40,44,0.22)', fg: '#24282C', ic: '#5E6368', cnt: '#24282C', w: 700 };
+    const dueParts = worst.due.indexOf('Overdue') === 0 ? ['Overdue', worst.due.replace('Overdue ', '')] : worst.due.split(' · ');
+    const dm = cur.docs.match(/(\d+) of (\d+)/);
+    const docsOk = !dm || dm[1] === dm[2];
+    const stats = [
+      Object.assign({ n: dueParts[0], label: dueParts[1] || '', isOver: worst.tone === RED, isClock: worst.tone !== RED, isDoc: false, isWf: false }, worst.tone === RED ? KT.over : worst.tone === AMBER ? KT.soon : KN),
+      Object.assign({ n: dm ? dm[1] + ' of ' + dm[2] : 'All', label: 'documents', isOver: false, isClock: false, isDoc: true, isWf: false }, docsOk ? KN : KT.soon),
+      Object.assign({ n: String(cur.open), label: 'open workflows', isOver: false, isClock: false, isDoc: false, isWf: true }, KN)
+    ];
+
+    // composer scope chips
+    let scopeChips;
+    if (isClient) {
+      scopeChips = sels.map((i) => ({ label: all[i].name, isClient: true, isWf: false, removable: true, notRemovable: false, remove: () => this.setState({ sels: sels.filter((x) => x !== i) }) }));
+    } else {
+      scopeChips = [{ label: large ? 'All 200 clients' : tiny ? 'All 2 clients' : 'All 48 clients', isClient: true, isWf: false, removable: false, notRemovable: true, remove: () => {} }];
+    }
+    if (isRun) { scopeChips = [{ label: wfTitle, isClient: false, isWf: true, removable: false, notRemovable: true, remove: () => {} }].concat(scopeChips); }
+
+    // run view
+    const steps = [
+      { title: 'Check what I know about you', sub: 'Checking what I already know about you', st: 'done' },
+      { title: 'Track progress through the getting started tour', sub: 'Tracking progress through the getting started tour', st: 'active' },
+      { title: 'Welcome and framing', sub: '', st: 'pending' },
+      { title: 'Create your first client workpaper', sub: '', st: 'pending' }
+    ].map((s) => ({ title: s.title, sub: s.sub, hasSub: s.sub !== '', isDone: s.st === 'done', isActive: s.st === 'active', isPending: s.st === 'pending', color: s.st === 'pending' ? '#8A8F94' : '#24282C' }));
+    const allowed = !!st.allowed;
+
+    // library
+    const libTab = st.libTab || 'all';
+    const libQ = st.libQ || '';
+    const lq = libQ.trim().toLowerCase();
+    const catalog = [
+      { cat: 'Training', title: '1. Getting Started: Your First Run', desc: 'Guides new users through their first hands-on workflow in Instead, from client creation to review.' },
+      { cat: 'Training', title: '2. Getting Started: Build Your Own Workflow', desc: 'Guides users through building a custom, repeatable workflow on a real task.' },
+      { cat: 'Tax resolution', title: 'Ability-to-pay analysis (RCP; Form 433-A)', desc: 'Guides the preparation of a complete IRS Form 433-A workpaper from source documents.' },
+      { cat: 'Tax planning', title: 'Accountable Plan Implementation', desc: 'Automates the creation of an accountable plan package for S corp expense reimbursements.' },
+      { cat: 'Tax resolution', title: 'Audit defense/football', desc: 'Organizes and delivers an IRS audit response package with documentation and cover letter.' },
+      { cat: 'Tax resolution', title: 'Audit Reconsideration', desc: 'Guides the prep and submission of IRS audit reconsideration requests.' },
+      { cat: 'Tax preparation workpapers', title: 'Build a 1040 tax workpaper (TY25)', desc: 'Guides the creation of a comprehensive 1040 tax workpaper from source documents.' },
+      { cat: 'Tax estimates', title: 'Build a C-Corp Tax Estimate (TY2026)', desc: 'Guides users through calculating estimated quarterly federal and state taxes.' }
+    ];
+    let cards = [];
+    if (libTab === 'all' || libTab === 'instead') {
+      cards = catalog.filter((w) => (w.title + ' ' + w.cat + ' ' + w.desc).toLowerCase().indexOf(lq) >= 0).map((w) => Object.assign({ run: runWf(w.title) }, w));
+    }
+    const libEmpty = libTab === 'mine' ? "You haven't created any workflows yet." : libTab === 'firm' ? "Your firm hasn't shared any workflows yet." : 'No workflows match.';
+    const libTabs = [['all', 'All'], ['mine', 'My workflows'], ['firm', 'Firm workflows'], ['instead', 'Instead workflows']].map((t) => ({
+      label: t[1], bg: libTab === t[0] ? '#fff' : 'transparent', bd: libTab === t[0] ? 'rgba(36,40,44,0.22)' : 'transparent', pick: () => this.setState({ libTab: t[0] })
+    }));
+
+    const pill = (s) => ({ Running: 'rgba(36,40,44,0.06)', 'Needs approval': '#DCE8F0', Queued: 'transparent', Suggested: 'transparent' }[s]);
+    const wf = (title, meta, pct, state, extra) => Object.assign({ title, meta, pct, state, pillBg: pill(state), pillBd: state === 'Needs approval' ? 'rgba(60,100,130,0.35)' : 'rgba(36,40,44,0.18)', approve: false, suggest: false, go: runWf(title) }, extra || {});
+
+    let heading, sub, placeholder, suggestions, groupATitle, groupAMore = '', groupBTitle, groupA, groupB, wfCount;
+    if (!isClient) {
+      heading = 'Good afternoon, Hemant.';
+      sub = large
+        ? 'Two clients are overdue and 31 returns hit the Oct 15 deadline. Fourteen need you today.'
+        : tiny
+          ? 'Two clients. Martha Filbert has a return due Oct 15; everything else is on track.'
+          : 'One client is overdue and four returns are due Oct 15. Ask anything, or pick up where you left off.';
+      placeholder = 'Give me a task or question to work on...';
+      suggestions = large
+        ? ['Send Q3 estimate reminders to 118 clients', 'Who is still missing documents?', 'Prep extensions for 31 clients', 'Summarize what changed this week']
+        : ['Send Q3 estimate reminders to everyone', 'Who is still missing documents?', 'Prep extensions for Oct 15', 'Summarize what changed this week'];
+      groupATitle = 'ACROSS CLIENTS';
+      if (large) {
+        groupAMore = '3 OF 5';
+        groupA = [
+          wf('Q3 estimate reminders', '84 of 118 clients sent', 71, 'Running'),
+          wf('Extension prep, Oct 15', '31 drafts, 9 waiting on you', 70, 'Needs approval', { approve: true }),
+          wf('Document chase', '12 clients, next send tomorrow', 25, 'Queued')
+        ];
+        groupBTitle = ''; groupB = []; wfCount = 9;
+      } else if (tiny) {
+        groupA = [wf('Extension prep, Oct 15', '1 draft waiting on you', 100, 'Needs approval', { approve: true })];
+        groupBTitle = 'INSIDE A CLIENT';
+        groupB = [wf('Return review', 'Filbert, Martha · step 3 of 5', 60, 'Running')];
+        wfCount = 2;
+      } else {
+        groupA = [
+          wf('Q3 estimate reminders', '18 of 42 clients sent', 43, 'Running'),
+          wf('Extension prep, Oct 15', '9 drafts waiting on you', 100, 'Needs approval', { approve: true })
+        ];
+        groupBTitle = 'INSIDE A CLIENT';
+        groupB = [
+          wf('Return review', 'Filbert, Martha · step 3 of 5', 60, 'Running'),
+          wf('1065 workpaper (TY25)', 'Okafor Dental LLC · step 2 of 6', 33, 'Running')
+        ];
+        wfCount = 4;
+      }
+    } else {
+      heading = multi ? 'How can I support these ' + sels.length + ' clients?' : 'How can I support ' + cur.first + '?';
+      sub = multi
+        ? picked.map((c) => c.first).join(', ') + '. Ask me to compare them, or run a workflow across just these clients.'
+        : cur.reason + '. Everything you ask here stays with this client until you remove them from the chat.';
+      placeholder = multi ? 'Ask about these clients, or run a workflow for them...' : 'Ask a follow up...';
+      suggestions = ['Request the missing documents', 'Finish the return', 'Estimate tax savings', 'Draft a client update'];
+      groupATitle = 'THIS CLIENT';
+      groupA = [
+        wf('Return review', 'Step 3 of 5', 60, 'Running'),
+        wf('Request missing documents', 'Suggested, not started', 0, 'Suggested', { suggest: true })
+      ];
+      groupBTitle = 'ACROSS CLIENTS, INCLUDES THIS ONE';
+      groupB = [wf('Q3 estimate reminders', 'Queued for this client', 0, 'Queued')];
+      wfCount = 3;
+    }
+    suggestions = suggestions.map((t) => ({ text: t, run: runWf(t) }));
+
+    return {
+      isLibrary, notLibrary: !isLibrary, isRun, notRun: !isRun, isClient, notClient: !isClient, isLarge: large, notLarge: !large,
+      goHome, openLibrary: () => this.setState({ view: 'library', menu: false, wfOpen: false }),
+      wfOpen, wfExpanded: wfOpen ? 'true' : 'false', toggleWf: () => this.setState({ wfOpen: !wfOpen }),
+      qRaw, hasQ, noQ: !hasQ,
+      onSearch: (e) => this.setState({ q: e.target.value }),
+      clearSearch: () => this.setState({ q: '' }),
+      clientHits, threadHits, nc: clientAll.length, nt: threadAll.length,
+      noClientHits: clientHits.length === 0, noThreadHits: threadHits.length === 0,
+      needs, others, views, needsHead: large ? '6 OF 14' : tiny ? '1' : '6', othersTotal: tiny ? 1 : 42, showAllOthers: !tiny,
+      threadRows, threadsCount, threadTotal, noThreadRows: threadRows.length === 0,
+      folders, panelName, panelForm, panelMore, removePrimary,
+      digest, stats, heading, sub, placeholder, suggestions,
+      scopeChips,
+      wfTitle, steps, showBanner: isRun && !allowed, allowAll: () => this.setState({ allowed: true }), allowAllNo: () => this.setState({ allowed: true }),
+      topJustify: isRun ? 'flex-start' : 'flex-end',
+      libTabs, cards, noCards: cards.length === 0, libEmpty, libQ, onLibSearch: (e) => this.setState({ libQ: e.target.value }),
+      groupATitle, groupAMore, groupBTitle, groupA, groupB, wfCount,
+      showMoreA: large && !isClient, showGroupB: !(large && !isClient), showInsideRow: large && !isClient
+    };
+  }
+}
+</script>
+</body>
+</html>
